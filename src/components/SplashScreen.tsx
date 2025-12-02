@@ -28,7 +28,7 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
             duration: 1,
           }}
         >
-          <Logo size="large" animated={true} className="w-32 h-32" />
+          <Logo size="large" className="w-32 h-32" />
         </motion.div>
 
         {/* App name */}

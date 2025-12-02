@@ -450,7 +450,8 @@ export class AudioEngine {
 
       if (source.frequencyGainNode) {
         try {
-          source.frequencyGainNode.disconnect();
+          const gainNode = source.frequencyGainNode;
+          gainNode.disconnect();
         } catch (e) {
           // Ignore if already disconnected
         }
@@ -458,7 +459,11 @@ export class AudioEngine {
       }
 
       if (source.masterGainNode) {
-        source.masterGainNode.disconnect();
+        try {
+          source.masterGainNode.disconnect();
+        } catch (e) {
+          // Ignore if already disconnected
+        }
         source.masterGainNode = undefined;
       }
     } catch (error) {

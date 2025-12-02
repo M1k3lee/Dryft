@@ -5,7 +5,6 @@ import { useAppStore } from '../store/useAppStore';
 
 export default function Timer() {
   const currentTimer = useAppStore((state) => state.currentTimer);
-  const timerDuration = useAppStore((state) => state.timerDuration);
   const setTimer = useAppStore((state) => state.setTimer);
   const updateTimer = useAppStore((state) => state.updateTimer);
   const clearTimer = useAppStore((state) => state.clearTimer);

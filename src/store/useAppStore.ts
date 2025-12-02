@@ -2,7 +2,6 @@ import { create } from 'zustand';
 import { SoundConfig, ActiveSound, FrequencySignalConfig } from '../types/audio';
 import { audioEngine } from '../audio/AudioEngine';
 import { getSoundById } from '../data/sounds';
-import { getSoundById } from '../data/sounds';
 
 interface AppState {
   activeSounds: Map<string, ActiveSound>;
@@ -37,9 +36,7 @@ export const useAppStore = create<AppState>((set, get) => ({
 
   playSound: async (sound: SoundConfig, volume: number = 0.7) => {
     // Initialize audio engine if needed
-    if (!audioEngine) {
-      await audioEngine.initialize();
-    }
+    await audioEngine.initialize();
 
     const state = get();
     
@@ -131,7 +128,8 @@ export const useAppStore = create<AppState>((set, get) => ({
       // Update all active sound volumes based on relative volumes
       const newActiveSounds = new Map(state.activeSounds);
       newActiveSounds.forEach((activeSound, soundId) => {
-        activeSound.volume = activeSound.relativeVolume * volume;
+        const relativeVolume = activeSound.relativeVolume ?? activeSound.volume / (state.masterVolume || 1);
+        activeSound.volume = relativeVolume * volume;
         audioEngine.setSoundVolume(soundId, activeSound.volume);
       });
       

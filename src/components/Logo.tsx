@@ -3,7 +3,7 @@ interface LogoProps {
   className?: string;
 }
 
-export default function Logo({ size = 'large', className = '' }: LogoProps) {
+export default function Logo({ className = '' }: LogoProps) {
 
   return (
     <div 
