@@ -1,5 +1,19 @@
 import { SoundConfig, FrequencySignalConfig } from '../types/audio';
 
+// Helper to get the base URL for assets (works in both dev and production)
+const getBaseUrl = (): string => {
+  // In production with GitHub Pages, base is '/Dryft/'
+  // In development, Vite handles this automatically via base config
+  if (typeof window !== 'undefined') {
+    // Check if we're on GitHub Pages
+    if (window.location.hostname.includes('github.io') || window.location.pathname.startsWith('/Dryft')) {
+      return '/Dryft';
+    }
+  }
+  // For local dev, Vite's base config handles it, but we still need it for absolute paths
+  return '/Dryft';
+};
+
 // Deep Sleep Frequency Configuration (Delta waves: 0.5-4 Hz)
 const deepSleepConfig: FrequencySignalConfig = {
   name: 'Deep Sleep',
@@ -181,7 +195,7 @@ export const sounds: SoundConfig[] = [
     name: 'Airplane Cabin',
     category: 'deep-sleep',
     description: 'Soothing white noise of an airplane cabin with deep sleep frequencies',
-    audioUrl: '/sounds/drift-airplane-cabin.mp3',
+    audioUrl: `${getBaseUrl()}/sounds/drift-airplane-cabin.mp3`,
     frequencyConfig: deltaSubtleConfig, // Delta for deep sleep
     animation: 'clouds',
     color: '#64748b',
@@ -191,7 +205,7 @@ export const sounds: SoundConfig[] = [
     name: 'Distant Thunderstorm',
     category: 'deep-sleep',
     description: 'Distant rumbling thunder with gentle rain and deep sleep frequencies',
-    audioUrl: '/sounds/drift-thunder.mp3',
+    audioUrl: `${getBaseUrl()}/sounds/drift-thunder.mp3`,
     frequencyConfig: deltaSubtleConfig, // Delta for deep sleep
     animation: 'storm',
     color: '#1e293b',
@@ -221,7 +235,7 @@ export const sounds: SoundConfig[] = [
     name: 'Soft Lullaby',
     category: 'light-sleep',
     description: 'Soothing lullaby with seamless looping and gentle sleep frequencies',
-    audioUrl: '/sounds/drift-lul1.mp3',
+    audioUrl: `${getBaseUrl()}/sounds/drift-lul1.mp3`,
     frequencyConfig: seamlessLullabyConfig, // Soft frequencies to mask loop transitions
     animation: 'clouds',
     color: '#f472b6',
@@ -231,7 +245,7 @@ export const sounds: SoundConfig[] = [
     name: 'Ocean Waves',
     category: 'light-sleep',
     description: 'Gentle ocean waves on the shore with light sleep frequencies',
-    audioUrl: '/sounds/drift-ocean-waves.mp3',
+    audioUrl: `${getBaseUrl()}/sounds/drift-ocean-waves.mp3`,
     frequencyConfig: thetaLightConfig, // Theta for light sleep
     animation: 'waves',
     color: '#06b6d4',
@@ -261,7 +275,7 @@ export const sounds: SoundConfig[] = [
     name: 'Crackling Fire',
     category: 'relaxation',
     description: 'Cozy fireplace sounds with relaxation frequencies',
-    audioUrl: '/sounds/drift-fireplace.mp3',
+    audioUrl: `${getBaseUrl()}/sounds/drift-fireplace.mp3`,
     frequencyConfig: thetaSubtleConfig, // Theta for relaxation
     animation: 'fire',
     color: '#f59e0b',
@@ -273,7 +287,7 @@ export const sounds: SoundConfig[] = [
     name: 'Rain Forest',
     category: 'nature',
     description: 'Peaceful rain falling in a forest with relaxation frequencies',
-    audioUrl: '/sounds/drift-rain-in-forest.mp3',
+    audioUrl: `${getBaseUrl()}/sounds/drift-rain-in-forest.mp3`,
     frequencyConfig: thetaSubtleConfig, // Theta for relaxation
     animation: 'rain',
     color: '#10b981',
@@ -283,7 +297,7 @@ export const sounds: SoundConfig[] = [
     name: 'Mountain Stream',
     category: 'nature',
     description: 'Flowing water over smooth stones with relaxation frequencies',
-    audioUrl: '/sounds/dryft-water-mountain.mp3',
+    audioUrl: `${getBaseUrl()}/sounds/dryft-water-mountain.mp3`,
     frequencyConfig: thetaSubtleConfig, // Theta for relaxation
     animation: 'water',
     color: '#3b82f6',
@@ -295,7 +309,7 @@ export const sounds: SoundConfig[] = [
     name: 'Zen Garden',
     category: 'ambient',
     description: 'Tranquil zen garden ambiance with calm frequencies',
-    audioUrl: '/sounds/dryft-gardens.mp3',
+    audioUrl: `${getBaseUrl()}/sounds/dryft-gardens.mp3`,
     frequencyConfig: alphaSubtleConfig, // Alpha for calm
     animation: 'spiral',
     color: '#14b8a6',
@@ -305,7 +319,7 @@ export const sounds: SoundConfig[] = [
     name: 'Singing Bowls',
     category: 'ambient',
     description: 'Resonant Tibetan singing bowls with meditation frequencies',
-    audioUrl: '/sounds/dryft-singing-bowls.mp3',
+    audioUrl: `${getBaseUrl()}/sounds/dryft-singing-bowls.mp3`,
     frequencyConfig: thetaLightConfig, // Theta for meditation
     animation: 'ripples',
     color: '#f97316',
