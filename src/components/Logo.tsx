@@ -18,7 +18,7 @@ export default function Logo({ className = '' }: LogoProps) {
     >
       {/* Logo image - natural size, no forced dimensions */}
       <img
-        src={`${import.meta.env.BASE_URL}logo-dryft.png`}
+        src="/Dryft/logo-dryft.png"
         alt="DRYFT"
         className="relative z-10 drop-shadow-2xl"
         style={{
