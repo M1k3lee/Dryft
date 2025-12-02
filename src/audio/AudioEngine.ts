@@ -386,7 +386,43 @@ export class AudioEngine {
     }
 
     try {
-      // Stop frequency generator first (this stops all oscillators in layers)
+      // First, disconnect master gain node to immediately cut all audio
+      // This is critical for sounds with both audio and frequency layers
+      if (source.masterGainNode) {
+        try {
+          source.masterGainNode.disconnect();
+        } catch (e) {
+          // Ignore if already disconnected
+        }
+        source.masterGainNode = undefined;
+      }
+
+      // Stop audio buffer source immediately (for MP3 files)
+      if (source.audioBuffer) {
+        try {
+          source.audioBuffer.stop(0); // Stop immediately, no fade
+        } catch (e) {
+          // Ignore if already stopped or invalid state
+        }
+        try {
+          source.audioBuffer.disconnect();
+        } catch (e) {
+          // Ignore if already disconnected
+        }
+        source.audioBuffer = undefined;
+      }
+
+      // Disconnect audio gain node
+      if (source.audioGainNode) {
+        try {
+          source.audioGainNode.disconnect();
+        } catch (e) {
+          // Ignore if already disconnected
+        }
+        source.audioGainNode = undefined;
+      }
+
+      // Stop frequency generator (this stops all oscillators in layers)
       if (source.frequencyGenerator) {
         source.frequencyGenerator.stop();
         // Wait a bit for oscillators to actually stop (they have fade-out delays)
@@ -427,34 +463,6 @@ export class AudioEngine {
         source.cosmicAmbienceGenerator.stop();
         source.cosmicAmbienceGenerator.dispose();
         source.cosmicAmbienceGenerator = undefined;
-      }
-
-      if (source.audioBuffer) {
-        try {
-          source.audioBuffer.stop();
-        } catch (e) {
-          // Ignore if already stopped
-        }
-        source.audioBuffer.disconnect();
-        source.audioBuffer = undefined;
-      }
-
-      if (source.audioGainNode) {
-        try {
-          source.audioGainNode.disconnect();
-        } catch (e) {
-          // Ignore if already disconnected
-        }
-        source.audioGainNode = undefined;
-      }
-
-      if (source.masterGainNode) {
-        try {
-          source.masterGainNode.disconnect();
-        } catch (e) {
-          // Ignore if already disconnected
-        }
-        source.masterGainNode = undefined;
       }
     } catch (error) {
       console.error('Error stopping sound:', error);
