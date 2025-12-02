@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Volume2, VolumeX, X, Square, ChevronDown, ChevronUp, RotateCcw, Layers } from 'lucide-react';
+import { Volume2, X, Square, ChevronDown, ChevronUp, RotateCcw, Layers } from 'lucide-react';
 import { useAppStore } from '../store/useAppStore';
 import { audioEngine } from '../audio/AudioEngine';
 

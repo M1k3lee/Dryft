@@ -1,6 +1,6 @@
 import { CarrierLayerNode } from './CarrierLayer';
 import { IsochronicNode } from './IsochronicLayer';
-import { FrequencySignalConfig, CarrierLayerConfig, IsochronicLayerConfig } from '../types/audio';
+import { FrequencySignalConfig } from '../types/audio';
 
 export class FrequencySignalGenerator {
   private audioContext: AudioContext;

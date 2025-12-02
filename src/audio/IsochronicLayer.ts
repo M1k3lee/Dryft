@@ -74,7 +74,6 @@ export class IsochronicNode {
     const maxGain = this.config.volume;
     const pulsePeriod = 1 / this.config.pulseRate; // seconds per pulse
     const onTime = pulsePeriod * this.config.dutyCycle;
-    const offTime = pulsePeriod * (1 - this.config.dutyCycle);
 
     let currentTime = startTime;
     const duration = 3600; // Schedule for 1 hour max

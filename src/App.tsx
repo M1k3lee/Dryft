@@ -76,7 +76,7 @@ function App() {
 
       {/* Logo - At very top, centered, natural size */}
       <div className="w-full flex justify-center items-start" style={{ marginTop: '0px', paddingTop: '0px', marginBottom: '3px', minHeight: 'auto' }}>
-        <Logo size="massive" className="triple-size" />
+        <Logo size="xlarge" className="triple-size" />
       </div>
 
       {/* Active Sound Animations - Fixed overlay that doesn't scroll */}

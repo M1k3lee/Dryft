@@ -1,13 +1,9 @@
-import { motion } from 'framer-motion';
-
 interface LogoProps {
   size?: 'small' | 'medium' | 'large' | 'xlarge';
   className?: string;
 }
 
 export default function Logo({ size = 'large', className = '' }: LogoProps) {
-  // For large display, use natural image size
-  const isLargeDisplay = size === 'massive' && className.includes('triple-size');
 
   return (
     <div 

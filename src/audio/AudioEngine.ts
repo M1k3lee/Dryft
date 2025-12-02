@@ -1,7 +1,7 @@
 import { FrequencySignalGenerator } from './FrequencySignalGenerator';
 import { WhiteNoiseGenerator } from './WhiteNoiseGenerator';
 import { CosmicAmbienceGenerator } from './CosmicAmbienceGenerator';
-import { SoundConfig, ActiveSound, FrequencySignalConfig } from '../types/audio';
+import { SoundConfig, FrequencySignalConfig } from '../types/audio';
 
 interface AudioSource {
   id: string;
@@ -440,12 +440,20 @@ export class AudioEngine {
       }
 
       if (source.audioGainNode) {
-        source.audioGainNode.disconnect();
+        try {
+          source.audioGainNode.disconnect();
+        } catch (e) {
+          // Ignore if already disconnected
+        }
         source.audioGainNode = undefined;
       }
 
       if (source.frequencyGainNode) {
-        source.frequencyGainNode.disconnect();
+        try {
+          source.frequencyGainNode.disconnect();
+        } catch (e) {
+          // Ignore if already disconnected
+        }
         source.frequencyGainNode = undefined;
       }
 
