@@ -448,16 +448,6 @@ export class AudioEngine {
         source.audioGainNode = undefined;
       }
 
-      if (source.frequencyGainNode) {
-        try {
-          const gainNode = source.frequencyGainNode;
-          gainNode.disconnect();
-        } catch (e) {
-          // Ignore if already disconnected
-        }
-        source.frequencyGainNode = undefined;
-      }
-
       if (source.masterGainNode) {
         try {
           source.masterGainNode.disconnect();
